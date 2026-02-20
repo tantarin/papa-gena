@@ -327,9 +327,9 @@
     }
     .family-card img {
       width: 100%;
-      height: 320px;
+      height: 420px;
       object-fit: cover;
-      object-position: top;
+      object-position: center;
       display: block;
     }
     .family-card .card-label {
@@ -358,9 +358,9 @@
     .friend-card:hover { transform: scale(1.04) rotate(-1deg); }
     .friend-card img {
       width: 100%;
-      height: 360px;
+      height: 420px;
       object-fit: cover;
-      object-position: top;
+      object-position: center;
       display: block;
     }
     .friend-card .card-label {
@@ -399,6 +399,13 @@
 
     /* ===== CONFETTI CANVAS ===== */
     #confetti { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
+
+    @media (max-width: 768px) {
+      .family-card img,
+      .friend-card img {
+        height: 360px;
+      }
+    }
   </style>
 </head>
 <body>

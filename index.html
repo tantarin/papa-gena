@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Папа Гена — Легенда!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #f5af19, #f12711, #f5af19);
+      background-size: 300% 300%;
+      animation: bgMove 8s ease infinite;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    @keyframes bgMove {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      padding: 60px 20px 30px;
+      position: relative;
+    }
+
+    .crown {
+      font-size: 80px;
+      animation: spin 4s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin {
+      0%   { transform: rotate(-10deg) scale(1); }
+      50%  { transform: rotate(10deg) scale(1.15); }
+      100% { transform: rotate(-10deg) scale(1); }
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 4px 4px 0 #c0392b, 8px 8px 0 rgba(0,0,0,0.2);
+      letter-spacing: 2px;
+      margin: 10px 0 6px;
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      color: #fff3;
+      color: rgba(255,255,255,0.9);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .stars {
+      font-size: 2rem;
+      letter-spacing: 4px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.6; transform: scale(1.2); }
+    }
+
+    /* ===== FACTS ===== */
+    .facts-bar {
+      background: rgba(0,0,0,0.25);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 12px 0;
+      margin: 20px 0;
+    }
+    .facts-bar span {
+      display: inline-block;
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0 40px;
+      animation: ticker 22s linear infinite;
+    }
+    @keyframes ticker {
+      from { transform: translateX(100vw); }
+      to   { transform: translateX(-100%); }
+    }
+
+    /* ===== PHOTO GRID ===== */
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+      margin: 40px 0 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      padding: 0 30px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform .3s, box-shadow .3s;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-8px) rotate(-1deg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .card-label {
+      background: linear-gradient(90deg, #f12711, #f5af19);
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 12px 16px;
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #FFD700;
+      color: #c0392b;
+      font-weight: 900;
+      font-size: 1.5rem;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      animation: wobble 2s ease-in-out infinite;
+    }
+    @keyframes wobble {
+      0%, 100% { transform: rotate(0); }
+      25%       { transform: rotate(-15deg); }
+      75%       { transform: rotate(15deg); }
+    }
+
+    /* ===== CAT SECTION ===== */
+    .cat-section {
+      background: rgba(0,0,0,0.25);
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    .cat-card {
+      display: inline-block;
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      max-width: 420px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    .cat-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cat-caption {
+      background: linear-gradient(90deg, #6a3093, #a044ff);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 900;
+      padding: 14px 20px;
+    }
+
+    /* ===== SUPERPOWERS ===== */
+    .powers {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 30px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+    }
+
+    .power-card {
+      background: rgba(255,255,255,0.15);
+      border: 3px solid rgba(255,255,255,0.4);
+      border-radius: 18px;
+      padding: 24px 16px;
+      text-align: center;
+      color: #fff;
+      backdrop-filter: blur(6px);
+      transition: transform .2s;
+    }
+    .power-card:hover { transform: scale(1.07); }
+
+    .power-icon { font-size: 3rem; margin-bottom: 10px; }
+    .power-title { font-weight: 900; font-size: 1.1rem; margin-bottom: 6px; }
+    .power-desc { font-size: 0.9rem; opacity: 0.85; }
+
+    /* ===== BUTTON ===== */
+    .btn-wrap { text-align: center; padding: 20px 0 60px; }
+    .btn {
+      display: inline-block;
+      background: #FFD700;
+      color: #c0392b;
+      font-weight: 900;
+      font-size: 1.4rem;
+      padding: 18px 48px;
+      border-radius: 60px;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.4);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: rgba(0,0,0,0.35);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.95rem;
+    }
+
+    /* ===== CONFETTI CANVAS ===== */
+    #confetti { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
+  </style>
+</head>
+<body>
+
+<canvas id="confetti"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="crown">👑</div>
+  <h1>Папа Гена</h1>
+  <p class="subtitle">Самый крутой папа на свете и в окрестностях Вселенной</p>
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+</section>
+
+<!-- БЕГУЩАЯ СТРОКА -->
+<div class="facts-bar">
+  <span>
+    🎣 Мастер рыбалки &nbsp;•&nbsp;
+    🍽️ Знаток вкусной еды &nbsp;•&nbsp;
+    🛋️ Гуру дзена и релакса &nbsp;•&nbsp;
+    🐱 Лучший друг котиков &nbsp;•&nbsp;
+    💪 Силач и красавец &nbsp;•&nbsp;
+    🏆 Чемпион всего на свете &nbsp;•&nbsp;
+    🎣 Мастер рыбалки &nbsp;•&nbsp;
+    🍽️ Знаток вкусной еды &nbsp;•&nbsp;
+    🛋️ Гуру дзена и релакса &nbsp;•&nbsp;
+  </span>
+</div>
+
+<!-- ФОТО ПАПЫ -->
+<p class="section-title">📸 Папа в деле</p>
+<div class="grid">
+
+  <div class="card">
+    <div class="badge">😌</div>
+    <img src="papa1.png" alt="Папа Гена отдыхает" />
+    <div class="card-label">Практикую философию дивана</div>
+  </div>
+
+  <div class="card">
+    <div class="badge">🍽️</div>
+    <img src="papa2.png" alt="Папа Гена за обедом" />
+    <div class="card-label">Серьёзный подход к обеду</div>
+  </div>
+
+  <div class="card">
+    <div class="badge">🎣</div>
+    <img src="papa3.png" alt="Папа Гена с рыбой" />
+    <div class="card-label">Поймал! (Рыба в шоке)</div>
+  </div>
+
+</div>
+
+<!-- КОТИК -->
+<section class="cat-section">
+  <p class="section-title">🐱 Секретный агент — Котик Папы Гены</p>
+  <div class="cat-card">
+    <img src="kotik.png" alt="Котик" />
+    <div class="cat-caption">«Плита — моя территория. Уйди, человек.»</div>
+  </div>
+</section>
+
+<!-- СУПЕРСИЛЫ -->
+<p class="section-title">⚡ Суперсилы Папы Гены</p>
+<div class="powers">
+  <div class="power-card">
+    <div class="power-icon">🎣</div>
+    <div class="power-title">Рыбалка</div>
+    <div class="power-desc">Рыба сама выпрыгивает из воды, узнав о его приближении</div>
+  </div>
+  <div class="power-card">
+    <div class="power-icon">🛋️</div>
+    <div class="power-title">Мега-релакс</div>
+    <div class="power-desc">Способен достичь нирваны на любой поверхности</div>
+  </div>
+  <div class="power-card">
+    <div class="power-icon">🍗</div>
+    <div class="power-title">Гурман</div>
+    <div class="power-desc">Определяет качество блюда с первого взгляда</div>
+  </div>
+  <div class="power-card">
+    <div class="power-icon">🐱</div>
+    <div class="power-title">Котолюб</div>
+    <div class="power-desc">Коты уважают его и делятся плитой</div>
+  </div>
+  <div class="power-card">
+    <div class="power-icon">💪</div>
+    <div class="power-title">Стальные нервы</div>
+    <div class="power-desc">Спокоен как удав в любой ситуации</div>
+  </div>
+</div>
+
+<!-- КНОПКА -->
+<div class="btn-wrap">
+  <button class="btn" onclick="launchConfetti()">🎉 Обнять папу виртуально!</button>
+</div>
+
+<footer>
+  ❤️ Сделано с любовью для лучшего папы на свете — Гены!
+</footer>
+
+<script>
+  // ===== CONFETTI =====
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  let pieces = [];
+  let running = false;
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function randomColor() {
+    const colors = ['#FFD700','#f12711','#f5af19','#a044ff','#00e676','#40c4ff','#ff4081'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
+  function launchConfetti() {
+    pieces = [];
+    for (let i = 0; i < 180; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        w: Math.random() * 14 + 6,
+        h: Math.random() * 7 + 4,
+        color: randomColor(),
+        tilt: Math.random() * 30 - 15,
+        tiltSpeed: Math.random() * 0.1 + 0.05,
+        speed: Math.random() * 4 + 2,
+        opacity: 1,
+      });
+    }
+    if (!running) {
+      running = true;
+      animateConfetti();
+    }
+    // heart burst
+    showHeart();
+  }
+
+  function animateConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+    pieces.forEach(p => {
+      p.y += p.speed;
+      p.tilt += p.tiltSpeed;
+      if (p.y < canvas.height + 20) alive = true;
+      ctx.save();
+      ctx.globalAlpha = p.opacity;
+      ctx.fillStyle = p.color;
+      ctx.translate(p.x + p.w / 2, p.y + p.h / 2);
+      ctx.rotate(p.tilt * Math.PI / 180);
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+    if (alive) {
+      requestAnimationFrame(animateConfetti);
+    } else {
+      running = false;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  // Big floating heart
+  function showHeart() {
+    const div = document.createElement('div');
+    div.textContent = '❤️';
+    div.style.cssText = `
+      position: fixed;
+      font-size: 6rem;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      z-index: 10000;
+      pointer-events: none;
+      transition: transform .4s cubic-bezier(.175,.885,.32,1.275), opacity .4s;
+      opacity: 1;
+    `;
+    document.body.appendChild(div);
+    requestAnimationFrame(() => {
+      div.style.transform = 'translate(-50%, -50%) scale(1)';
+    });
+    setTimeout(() => {
+      div.style.opacity = '0';
+      div.style.transform = 'translate(-50%, -60%) scale(1.3)';
+    }, 900);
+    setTimeout(() => div.remove(), 1400);
+  }
+</script>
+</body>
+</html>

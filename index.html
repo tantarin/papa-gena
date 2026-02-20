@@ -393,6 +393,67 @@
       box-shadow: 0 14px 32px rgba(0,0,0,0.4);
     }
 
+    /* ===== MINI GAME ===== */
+    .game-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 30px 50px;
+    }
+    .game-box {
+      background: rgba(255,255,255,0.14);
+      border: 3px solid rgba(255,255,255,0.35);
+      border-radius: 24px;
+      backdrop-filter: blur(6px);
+      padding: 22px;
+      color: #fff;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+    }
+    .game-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+    .game-arena {
+      position: relative;
+      height: 320px;
+      border-radius: 18px;
+      border: 2px dashed rgba(255,255,255,0.5);
+      background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
+      overflow: hidden;
+      user-select: none;
+    }
+    .game-hint {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 700;
+      color: rgba(255,255,255,0.82);
+      padding: 12px;
+    }
+    .paw {
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      border: none;
+      border-radius: 50%;
+      background: #ffd84a;
+      cursor: pointer;
+      font-size: 2rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      display: none;
+      animation: pawPop .2s ease-out;
+    }
+    @keyframes pawPop {
+      from { transform: scale(0.3); }
+      to { transform: scale(1); }
+    }
+
     /* ===== FOOTER ===== */
     footer {
       background: rgba(0,0,0,0.35);
@@ -410,6 +471,8 @@
       .friend-card img {
         height: 360px;
       }
+      .game-arena { height: 260px; }
+      .paw { width: 62px; height: 62px; font-size: 1.7rem; }
     }
   </style>
 </head>
@@ -627,6 +690,22 @@
   <button class="btn" onclick="launchConfetti()" style="background:#ff6eb4;color:#fff;">💖 Обнять маму виртуально!</button>
 </div>
 
+<!-- ИГРА -->
+<p class="section-title">🎮 Игра: Поймай лапки Кузи</p>
+<section class="game-wrap">
+  <div class="game-box">
+    <div class="game-head">
+      <div>Очки: <span id="paw-score">0</span></div>
+      <div>Время: <span id="paw-time">20</span> сек</div>
+      <button class="btn" id="paw-start" style="padding:10px 24px;font-size:1rem;">Старт</button>
+    </div>
+    <div class="game-arena" id="paw-arena">
+      <div class="game-hint" id="paw-hint">Нажми «Старт», чтобы лапки Кузи начали выскакивать!</div>
+      <button class="paw" id="paw-target" aria-label="Лапка Кузи">🐾</button>
+    </div>
+  </div>
+</section>
+
 <footer>
   ❤️ Сделано с любовью для лучших родителей — Папы Гены и Мамы Иры!
 </footer>
@@ -760,6 +839,68 @@
     }, 900);
     setTimeout(() => div.remove(), 1400);
   }
+
+  // ===== MINI GAME: paws =====
+  const pawStart = document.getElementById('paw-start');
+  const pawScoreEl = document.getElementById('paw-score');
+  const pawTimeEl = document.getElementById('paw-time');
+  const pawArena = document.getElementById('paw-arena');
+  const pawTarget = document.getElementById('paw-target');
+  const pawHint = document.getElementById('paw-hint');
+
+  let pawScore = 0;
+  let pawTime = 20;
+  let pawGameOn = false;
+  let pawTick = null;
+  let pawSpawn = null;
+
+  function movePaw() {
+    const maxX = pawArena.clientWidth - pawTarget.offsetWidth;
+    const maxY = pawArena.clientHeight - pawTarget.offsetHeight;
+    const x = Math.floor(Math.random() * Math.max(10, maxX));
+    const y = Math.floor(Math.random() * Math.max(10, maxY));
+    pawTarget.style.left = `${x}px`;
+    pawTarget.style.top = `${y}px`;
+    pawTarget.style.display = 'block';
+  }
+
+  function finishPawGame() {
+    pawGameOn = false;
+    clearInterval(pawTick);
+    clearInterval(pawSpawn);
+    pawTarget.style.display = 'none';
+    pawHint.textContent = `Финиш! Поймано лапок: ${pawScore}. Нажми «Старт» ещё раз.`;
+    pawHint.style.display = 'grid';
+    pawStart.disabled = false;
+    launchConfetti();
+  }
+
+  function startPawGame() {
+    pawScore = 0;
+    pawTime = 20;
+    pawGameOn = true;
+    pawScoreEl.textContent = String(pawScore);
+    pawTimeEl.textContent = String(pawTime);
+    pawHint.style.display = 'none';
+    pawStart.disabled = true;
+
+    movePaw();
+    pawSpawn = setInterval(movePaw, 700);
+    pawTick = setInterval(() => {
+      pawTime -= 1;
+      pawTimeEl.textContent = String(pawTime);
+      if (pawTime <= 0) finishPawGame();
+    }, 1000);
+  }
+
+  pawTarget.addEventListener('click', () => {
+    if (!pawGameOn) return;
+    pawScore += 1;
+    pawScoreEl.textContent = String(pawScore);
+    movePaw();
+  });
+
+  pawStart.addEventListener('click', startPawGame);
 </script>
 </body>
 </html>

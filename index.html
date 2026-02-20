@@ -598,11 +598,18 @@
 
 <script>
   // ===== ПАРОЛЬ =====
-  const CORRECT = '2903';
+  // Здесь хранится SHA-256 хэш пароля — сам пароль по нему восстановить невозможно
+  const CORRECT_HASH = '430834d9caa6886c0316a1b6e87cc3471828e82a134ec4811b214d769abd0789';
 
-  function checkPassword() {
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(x => x.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function checkPassword() {
     const val = document.getElementById('pwd-input').value;
-    if (val === CORRECT) {
+    const hash = await sha256(val);
+    if (hash === CORRECT_HASH) {
       const ls = document.getElementById('lock-screen');
       ls.style.transition = 'opacity .5s';
       ls.style.opacity = '0';

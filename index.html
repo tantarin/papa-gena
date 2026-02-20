@@ -224,6 +224,73 @@
     .power-title { font-weight: 900; font-size: 1.1rem; margin-bottom: 6px; }
     .power-desc { font-size: 0.9rem; opacity: 0.85; }
 
+    /* ===== СЕМЬЯ ===== */
+    .family-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 30px 40px;
+    }
+
+    .family-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .family-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform .3s, box-shadow .3s;
+      position: relative;
+    }
+    .family-card:hover {
+      transform: translateY(-8px) rotate(1deg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .family-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .family-card .card-label {
+      background: linear-gradient(90deg, #1a6faf, #38ef7d);
+    }
+
+    /* ===== ДРУГ ===== */
+    .friend-section {
+      background: rgba(0,0,0,0.2);
+      padding: 40px 30px;
+    }
+    .friend-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .friend-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform .3s;
+    }
+    .friend-card:hover { transform: scale(1.04) rotate(-1deg); }
+    .friend-card img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .friend-card .card-label {
+      background: linear-gradient(90deg, #f953c6, #b91d73);
+    }
+
     /* ===== BUTTON ===== */
     .btn-wrap { text-align: center; padding: 20px 0 60px; }
     .btn {
@@ -274,14 +341,17 @@
 <div class="facts-bar">
   <span>
     🎣 Мастер рыбалки &nbsp;•&nbsp;
+    🔨 Делает ремонт у дочки Ксюши &nbsp;•&nbsp;
     🍽️ Знаток вкусной еды &nbsp;•&nbsp;
     🛋️ Гуру дзена и релакса &nbsp;•&nbsp;
-    🐱 Лучший друг котиков &nbsp;•&nbsp;
+    🐱 Лучший друг котика Кузи &nbsp;•&nbsp;
+    🍄 Грибник на велосипеде &nbsp;•&nbsp;
     💪 Силач и красавец &nbsp;•&nbsp;
+    🤝 Друг легендарного Дубиковского &nbsp;•&nbsp;
+    ❤️ Любящий муж мамы Иры &nbsp;•&nbsp;
     🏆 Чемпион всего на свете &nbsp;•&nbsp;
     🎣 Мастер рыбалки &nbsp;•&nbsp;
-    🍽️ Знаток вкусной еды &nbsp;•&nbsp;
-    🛋️ Гуру дзена и релакса &nbsp;•&nbsp;
+    🔨 Делает ремонт у дочки Ксюши &nbsp;•&nbsp;
   </span>
 </div>
 
@@ -318,6 +388,74 @@
   </div>
 </section>
 
+<!-- РЕМОНТ -->
+<p class="section-title">🔨 Папа делает ремонт у Ксюши</p>
+<div class="family-section">
+  <div class="family-grid" style="max-width:500px;margin:0 auto;">
+    <div class="family-card">
+      <div class="badge">🏗️</div>
+      <img src="remont.png" alt="Папа делает ремонт" />
+      <div class="card-label">Мастер на все руки — ремонт у дочки Ксюши!</div>
+    </div>
+  </div>
+</div>
+
+<!-- КОТИК КУЗЯ -->
+<section class="cat-section">
+  <p class="section-title">😸 Котик Кузя — главный по квартире</p>
+  <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
+    <div class="cat-card" style="animation-delay:0s;">
+      <img src="kotik2.png" alt="Котик Кузя на столе" />
+      <div class="cat-caption">«Стол — это моя кровать. Еда? Какая еда?»</div>
+    </div>
+    <div class="cat-card" style="animation-delay:0.8s;">
+      <img src="papa_kuzia.png" alt="Папа и Кузя" />
+      <div class="cat-caption">Папа Гена и Кузя — лучшие друзья 🖤</div>
+    </div>
+  </div>
+</section>
+
+<!-- ГРИБЫ -->
+<p class="section-title">🍄 Грибник от бога</p>
+<div class="family-section">
+  <div class="family-grid" style="max-width:500px;margin:0 auto;">
+    <div class="family-card">
+      <div class="badge">🚲</div>
+      <img src="griby.png" alt="Папа с грибами" />
+      <div class="card-label">На велосипеде — за грибами. Мухоморы тоже красивые!</div>
+    </div>
+  </div>
+</div>
+
+<!-- СЕМЬЯ -->
+<p class="section-title">❤️ Семья Папы Гены</p>
+<div class="family-section">
+  <div class="family-grid">
+    <div class="family-card">
+      <div class="badge">🪿</div>
+      <img src="mama_gus.png" alt="Мама Ира с гусем" />
+      <div class="card-label">Мама Ира — укрощает гусей голыми руками!</div>
+    </div>
+    <div class="family-card">
+      <div class="badge">💍</div>
+      <img src="mama_ira.png" alt="Мама Ира" />
+      <div class="card-label">Мама Ира — любимая жена Папы Гены 💖</div>
+    </div>
+  </div>
+</div>
+
+<!-- ДРУГ -->
+<section class="friend-section">
+  <p class="section-title">🤝 Друг Дубиковский — легендарный!</p>
+  <div class="friend-inner">
+    <div class="friend-card">
+      <div class="badge" style="background:#f953c6;color:#fff;">🦅</div>
+      <img src="dubikovsky.png" alt="Друг Дубиковский" />
+      <div class="card-label">Дубиковский — держит ястреба и не боится ничего!</div>
+    </div>
+  </div>
+</section>
+
 <!-- СУПЕРСИЛЫ -->
 <p class="section-title">⚡ Суперсилы Папы Гены</p>
 <div class="powers">
@@ -345,6 +483,21 @@
     <div class="power-icon">💪</div>
     <div class="power-title">Стальные нервы</div>
     <div class="power-desc">Спокоен как удав в любой ситуации</div>
+  </div>
+  <div class="power-card">
+    <div class="power-icon">🔨</div>
+    <div class="power-title">Мастер ремонта</div>
+    <div class="power-desc">Сделает ремонт дочке Ксюше — и глазом не моргнёт</div>
+  </div>
+  <div class="power-card">
+    <div class="power-icon">🍄</div>
+    <div class="power-title">Грибник</div>
+    <div class="power-desc">Находит грибы даже там, где их нет. На велосипеде</div>
+  </div>
+  <div class="power-card">
+    <div class="power-icon">❤️</div>
+    <div class="power-title">Любящий муж</div>
+    <div class="power-desc">Мама Ира — счастливейшая женщина на свете</div>
   </div>
 </div>
 

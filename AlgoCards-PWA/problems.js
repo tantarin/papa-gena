@@ -4589,7 +4589,7 @@ complexity:`Время: O(n log n), Память: O(1)`,
 complexityExpl:`Сортировка O(n log n), для каждого r бинпоиск O(log n) — O(n log n). Константная доп. память.`,
 expl:`Сортируем массив. Для каждого r бинарным поиском находим самый правый l, где nums[r] - nums[l] >= k. Все элементы от l до r-1 образуют подходящие пары. O(n log n).`},
 
-{id:"tp20",t:"Рост акций компании",p:"Two Pointers",d:"средне",
+{id:"tp20",t:"Рост акций компании",p:"Sliding Window",d:"средне",
 desc:`Дан массив цен акций по дням. Найти ==максимальную прибыль от одной покупки и одной продажи== (купить раньше, продать позже).
 
 Пример:
@@ -5813,7 +5813,7 @@ complexityExpl:`Один проход двумя указателями — O(n)
 expl:`Вода над позицией i ограничена min(maxLeft, maxRight) − height[i]. Два указателя: если левая стенка меньше — правая уже достаточно высока, считаем воду слева и двигаем left. Иначе — считаем справа и двигаем right.`,
 lcSimilar:[{"n":821,"t":"Shortest Distance to a Character","h":"shortest-distance-to-a-character"},{"n":238,"t":"Product of Array Except Self","h":"product-of-array-except-self"},{"n":845,"t":"Longest Mountain in Array","h":"longest-mountain-in-array"}]},
 
-{id:"tp30",t:"Longest Mountain in Array",p:"Two Pointers",d:"средне",
+{id:"tp30",t:"Longest Mountain in Array",p:"Dynamic Programming",d:"средне",
 desc:`Найти длину ==самой длинной горы== в массиве. Гора: строго возрастает, затем строго убывает, длина ≥ 3.
 
 Пример:
